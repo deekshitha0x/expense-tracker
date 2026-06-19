@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Expense Tracker</title>
+    </head>
+
+<body>
+    
+    <form method= "POST">
+        <input
+            type= "text"
+            name= "title"
+            placeholder= "expense name"
+            required>
+
+        <input
+            type= "number"
+            step="0.01"
+            min="0.01"
+            name= "amount"
+            placeholder= "amount"
+            required>
+            
+        <select name="category" required>
+            <option value="">Select Category</option>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>shopping</option>
+            <option>bills</option>
+            <option>other</option>
+        </select>
+
+        <button type= "submit">
+            Add Expense
+        </button>
+
+    </form>
+<hr>
+    <h2>Expenses</h2>
+
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Amount (₹)</th>
+            <th>Category</th>
+            <th>remove</th>
+        </tr>
+
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.title }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.category}}</td>
+            <td>
+                <a href="/delete/{{ loop.index0 }}">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+     
+    <h2>Total spending: ₹{{ total }}</h2>
+
+
+</body>
+
+
+</html>
